@@ -17,7 +17,6 @@ class PaisDAO {
                 val nuevo = Pais(
                     c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), c.getInt(4),
                     c.getString(5), c.getString(6), c.getInt(7) == 1
-                    //TODO: Mirar la parte del miembro
                 )
                 res.add(nuevo)
             }
@@ -32,7 +31,7 @@ class PaisDAO {
         lateinit var c: Cursor
         try {
             val db = DBOpenHelper.getInstance(context)!!.readableDatabase
-            val sql = "SELECT * FROM paises WHERE miembro IS TRUE;"
+            val sql = "SELECT * FROM paises WHERE miembro IS true;"
             c = db.rawQuery(sql, null)
             res = mutableListOf()
             // Leo los resultados del cursor y los meto en la lista
@@ -54,7 +53,7 @@ class PaisDAO {
         lateinit var c: Cursor
         try {
             val db = DBOpenHelper.getInstance(context)!!.readableDatabase
-            val sql = "SELECT * FROM paises WHERE miembro IS FALSE;"
+            val sql = "SELECT * FROM paises WHERE miembro IS false;"
             c = db.rawQuery(sql, null)
             res = mutableListOf()
             // Leo los resultados del cursor y los meto en la lista

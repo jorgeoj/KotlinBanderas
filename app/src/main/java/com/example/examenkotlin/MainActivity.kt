@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity() {
         lista = mutableListOf()
         lista = PaisProvider.lista
 
+        // Copia los datos de la lista de PaisProvider a la lista original
+        var originalList = PaisProvider.lista.toMutableList()
+
         // Suponiendo que `lista` es tu lista de objetos Pais y tienes una función `handleItemClick` como se definió anteriormente
         adapter = PaisAdapter(lista) { pais ->
             handleItemClick(pais, adapter)
@@ -80,36 +83,33 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.union_europea -> {
-                lista = paisDAO.cargarPaisesUE(this)
-                binding.rvPaises.adapter?.notifyDataSetChanged()
-                binding.rvPaises.adapter = PaisAdapter(lista) {
-
-                }
+                val filteredList = lista.filter { it.miembro }.toMutableList()
+                updateAdapter(filteredList)
                 Toast.makeText(this, "Lista de países de la UE", Toast.LENGTH_SHORT).show()
                 true
             }
 
             R.id.resto_de_paises -> {
-                lista = paisDAO.cargarPaisesFueraUE(this)
-                binding.rvPaises.adapter?.notifyDataSetChanged()
-                binding.rvPaises.adapter = PaisAdapter(lista) {
-
-                }
+                val filteredListNoUE = lista.filter { !it.miembro }.toMutableList()
+                updateAdapter(filteredListNoUE)
                 Toast.makeText(this, "Lista de países que no pertenecen a la UE", Toast.LENGTH_SHORT).show()
                 true
             }
 
             R.id.todos_los_paises -> {
-                lista = paisDAO.cargarTodosLosPaises(this)
-                binding.rvPaises.adapter?.notifyDataSetChanged()
-                binding.rvPaises.adapter = PaisAdapter(lista) {
-
-                }
+                updateAdapter(lista.toMutableList())
                 Toast.makeText(this, "Lista de todos los países, pertenezcan o no a la UE", Toast.LENGTH_SHORT).show()
                 true
             }
 
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun updateAdapter(filteredList: MutableList<Pais>) {
+        adapter = PaisAdapter(filteredList) { pais ->
+            handleItemClick(pais, adapter)
+        }
+        binding.rvPaises.adapter = adapter
     }
 }
