@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/union_europea"
+        android:title="@string/menu_UE"/>
+
+    <item android:id="@+id/resto_de_paises"
+        android:title="@string/menu_resto_paises"/>
+
+    <item
+        android:id="@+id/todos_los_paises"
+        android:title="@string/menu_todos_los_paises"
+        android:visible="true"/>
+</menu>

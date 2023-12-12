@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EjExamen2023</string>
+    <!-- Menu -->
+    <string name="menu_UE">Unión Europea</string>
+    <string name="menu_resto_paises">Resto de países</string>
+    <string name="menu_todos_los_paises">Todos los países</string>
+
+    <!-- Activity Pais -->
+    <string name="button_volver">Volver</string>
+    <string name="es_miembro">País miembro de la Unión Europea</string>
+    <string name="no_es_miembro">País NO miembro de la Unión Europea</string>
+</resources>
