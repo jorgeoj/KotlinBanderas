@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    //TODO: Mirar para que el menu pueda filtrar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.union_europea -> {
